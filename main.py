@@ -36,29 +36,71 @@ gB -> melhor posição/aptidão global (melhor da população toda) (valor mais 
 '''
 
 import random
-import math
-from Particula import Particula
+import copy
 import matplotlib.pyplot
+import statistics
+from Particula import Particula
 
 def plotar_dados():
     #matplotlib.pyplot.plot(x, y)
     #matplotlib.pyplot.show()
+    # for i in range(numero_testes):
+    #         for lista in lista_resultado:
+    #         #print(str(lista[iteracoes]))
+    #         print(lista[iteracoes][0])
+    #         arquivo.write(str(lista[iteracoes][0]).replace('.',',') + " ")
+    #         arquivo.write(str(lista[iteracoes][1]).replace('.',',') + " ")
+    #     arquivo.write('\n')
     pass
 
-def salvar_dados(nome_arquivo,lista_resultado,numero_testes):
-    arquivo = open(nome_arquivo + ".csv", "w")
+def salvar_dados(nome_arquivo,lista_resultado,numero_testes):    
+    precisao_casas_decimais = 6
     
-    for iteracoes in range(numero_testes):
-        arquivo.write('x y ')
-    arquivo.write('\n')
-
-    for iteracoes in range(numero_testes):
-        for lista in lista_resultado:
-            #print(str(lista[iteracoes]))
-            print(lista[iteracoes][0])
-            arquivo.write(str(lista[iteracoes][0]).replace('.',',') + " ")
-            arquivo.write(str(lista[iteracoes][1]).replace('.',',') + " ")
+    with open(nome_arquivo + ".csv", "w") as arquivo:
+        # gb1 gb1 gb1 gb1 gb1 .... n testes
+        # gb2
+        # .
+        # .
+        # .
+        # m interacoes            
+        
+        #Cabeçalho
+        arquivo.write(" ")
+        for i in range(numero_testes):
+            arquivo.write("Teste" + str(i+1) + " ")        
+        arquivo.write("Media"+ " ")
+        arquivo.write("Melhor" + " ")
+        arquivo.write("Pior" + " ")
+        arquivo.write("DesvioPadrao")
         arquivo.write('\n')
+
+        #Conteudo
+        for i in range(numero_testes):
+            data = []
+            arquivo.write("gBest" + str(i + 1) + " ")
+            for lista in lista_resultado:
+                particula_global = lista[i].get_valor_fitness()
+                particula_global = round(particula_global,precisao_casas_decimais)
+                data.append(particula_global)
+                arquivo.write(str(particula_global).replace('.',',') + " ")
+                
+            #Media
+            media = statistics.mean(data)
+            arquivo.write(str(media).replace('.',',') + " ")
+
+            #Melhor
+            menor = min(data)
+            arquivo.write(str(menor).replace('.',',') + " ")
+
+            #Pior
+            maior = max(data)
+            arquivo.write(str(maior).replace('.',',') + " ")
+
+            #Desvio padrão   
+            desvio = statistics.pstdev(data)
+            arquivo.write(str(desvio).replace('.',','))
+
+            arquivo.write('\n')
 
 def verifica_velocidade(velocidade):
     if (velocidade >= -77) and (velocidade <= 77):
@@ -135,11 +177,8 @@ def algoritmo_PSO(numero_populacao, iteracoes,const):
         # a primeira particula de uma lista ordenada crescentemente de acordo com o melhor fitness 
         # de cada uma
         g_best = lista_ordenada[0]
-        
-        # Captura dos X e Y do GBest 
-        x_aux  = g_best.x_best
-        y_aux = g_best.y_best
-        lista_gbest.append((x_aux,y_aux))
+
+        lista_gbest.append(copy.copy(g_best))
         
         for particula in lista_populacao:
             # Atualizando a velocidade da partícula pela fórmula: 
@@ -197,13 +236,13 @@ def algoritmo_PSO(numero_populacao, iteracoes,const):
 
 def main():
     # Determinando o numero de testes
-    numero_testes = 1
+    numero_testes = 10
 
     # Determinando o numero de interações
-    numero_interacoes = 100
+    numero_interacoes = 20
 
     # Determinando o número de partículas P da população
-    numero_populacao = 100
+    numero_populacao = 20
 
     # Constants de Phi (ϕ), para uso na equacao da velocidade
     const = 2.07
@@ -212,12 +251,10 @@ def main():
     
     for _ in range(numero_testes):
         lista_iteracao = algoritmo_PSO(numero_populacao,numero_interacoes,const)
-        for coord in lista_iteracao:
-            print(coord)
         lista_resultado.append(lista_iteracao)
 
-    # nome_arquivo = "teste"
-    # salvar_dados(nome_arquivo,lista_resultado,numero_testes)
+    nome_arquivo = "teste"
+    salvar_dados(nome_arquivo,lista_resultado,numero_testes)
     
     #Implementar plotagem
     # plotar_dados()
