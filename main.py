@@ -56,6 +56,7 @@ velocidade:
 
 import random
 import math
+import matplotlib.pyplot
 
 # Objeto da Particula
 class Particula:
@@ -99,23 +100,38 @@ class Particula:
     def set_velocidade_x(self, velocidade):
         self.velocidade_x = velocidade
     
-    
     def set_velocidade_y(self, velocidade):
         self.velocidade_y = velocidade
 
 
-def verifica_velocidade(particula, velocidade):
-    if (velocidade > -77) and (velocidade < 77):
+def verifica_velocidade(velocidade):
+    if (velocidade >= -77) and (velocidade <= 77):
         velocidade_correta = velocidade
-    elif (velocidade < -77):
+    elif (velocidade <= -77):
         velocidade_correta = -77
-    elif (velocidade > 77):
+    elif (velocidade >= 77):
         velocidade_correta = 77
     
     return velocidade_correta
 
 
+def verifica_posicao(posicao, velocidade):
+    if (posicao >= -512) and (posicao <= 512):
+        posicao_correta = posicao
+    elif (posicao <= -512):
+        posicao_correta = -512
+        velocidade = 0
+    elif (posicao >= 512):
+        posicao_correta = 512
+        velocidade = 0
+    
+    return posicao_correta, velocidade
+
+
 def algoritmo_PSO():
+    # Lista para armazenar os resultados para o gráfico
+    lista_g_best = []
+
     melhor_fitness = -959.6407
 
     # Estrutura de dados para armazenar as particulas
@@ -149,6 +165,7 @@ def algoritmo_PSO():
     # 7. Se condição de término não for alcançada, retorne ao passo 4.
     iteracoes = 20 #50 #100
     while x < iteracoes:
+        #lista_g_best.append([])
         # Calculo do W 
         w = 0.9 - x * ((0.9-0.4)/iteracoes)
 
@@ -160,13 +177,18 @@ def algoritmo_PSO():
             if (valor_fitness < particula.get_valor_fitness()):
                 particula.set_valor_fitness(valor_fitness)
                 particula.set_x_y_best(particula.x_atual, particula.y_atual)
-        x += 1
 
         # 5. Descubra a partícula com a melhor aptidão de toda a população (gΒ).
         lista_ordenada = list(lista_populacao)
-        sorted(lista_ordenada , key=lambda t: t.get_valor_fitness())
+        lista_ordenada = sorted(lista_ordenada , key=Particula.get_valor_fitness)
+        # for i in lista_ordenada:
+        #    print(i.get_valor_fitness())
+        # print()
         g_best = lista_ordenada[0]
         #print(g_best.x_best)
+        x_aux  = g_best.x_best
+        y_aux = g_best.y_best
+        lista_g_best.append((x_aux,y_aux))
         
         # 6. Para cada partícula p em P faça:
         for particula in lista_populacao:
@@ -175,29 +197,29 @@ def algoritmo_PSO():
             # Limite de [-77, 77]
 
             # Calcula a velocidade x
-            a = 2 * particula.velocidade_x
-            b = 1 * random.uniform(0,1)
+            a = w * particula.velocidade_x
+            b = 0.72 * random.uniform(0,1)
             c = particula.x_best - particula.x_atual
-            d = 1 * random.uniform(0,1)
+            d = 0.72 * random.uniform(0,1)
             e = g_best.x_best - particula.x_best
 
             velocidade_x = a + b * c + d * e
 
             # Verifica se a velocidade x ultrapassou o limite
-            velocidade = verifica_velocidade(particula, velocidade_x)
+            velocidade = verifica_velocidade(velocidade_x)
             particula.set_velocidade_x(velocidade)
 
             # Calcula a velocidade y            
             a = w * particula.velocidade_y
-            b = 1 * random.uniform(0,1)
+            b = 0.72 * random.uniform(0,1)
             c = particula.y_best - particula.y_atual
-            d = 1 * random.uniform(0,1)
+            d = 0.72 * random.uniform(0,1)
             e = g_best.y_best - particula.y_best
 
             velocidade_y = a + b * c + d * e
             
             # Verifica se a velocidade y ultrapassou o limite
-            velocidade = verifica_velocidade(particula, velocidade_y)
+            velocidade = verifica_velocidade(velocidade_y)
             particula.set_velocidade_y(velocidade)
 
             # (b) Atualize a posição da particular pela fórmula:
@@ -206,11 +228,50 @@ def algoritmo_PSO():
             nova_posicao_x = particula.x_atual + velocidade_x
             nova_posicao_y = particula.x_atual + velocidade_y
 
+            posicao, velocidade = verifica_posicao(nova_posicao_x, velocidade_x)
+            particula.set_velocidade_x(velocidade)
+            particula.x_atual = posicao
+
+            posicao, velocidade = verifica_posicao(nova_posicao_y, velocidade_y)
+            particula.set_velocidade_y(velocidade)
+            particula.y_atual = posicao
+        
+        x += 1
+    
+    return lista_g_best
+
 
 def main():
+    lista_resultado = []
+
     # 10 iterações
     for i in range(10):
-        algoritmo_PSO()
+        lista_iteracao = algoritmo_PSO()
+        #print(lista_iteracao)
+        #print()
+
+        lista_resultado.append(lista_iteracao)
+    
+    #print(lista_resultado)
+    #print()
+
+    
+    arquivo = open("resultado_constante_072.csv", "w")
+    
+    for iteracoes in range(20):
+        arquivo.write('x y ')
+    arquivo.write('\n')
+
+    for iteracoes in range(20):
+        for lista in lista_resultado:
+            #print(str(lista[iteracoes]))
+            print(lista[iteracoes][0])
+            arquivo.write(str(lista[iteracoes][0]).replace('.',',') + " ")
+            arquivo.write(str(lista[iteracoes][1]).replace('.',',') + " ")
+        arquivo.write('\n')
+    
+    #matplotlib.pyplot.plot(x, y)
+    #matplotlib.pyplot.show()
 
     return 0
 
