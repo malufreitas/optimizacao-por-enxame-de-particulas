@@ -44,6 +44,7 @@ from Particula import Particula
 def plotar_dados():
     #matplotlib.pyplot.plot(x, y)
     #matplotlib.pyplot.show()
+
     # for i in range(numero_testes):
     #         for lista in lista_resultado:
     #         #print(str(lista[iteracoes]))
@@ -53,7 +54,7 @@ def plotar_dados():
     #     arquivo.write('\n')
     pass
 
-def salvar_dados(nome_arquivo,lista_resultado,numero_testes):    
+def salvar_dados(nome_arquivo,lista_resultado):    
     precisao_casas_decimais = 6
     
     with open(nome_arquivo + ".csv", "w") as arquivo:
@@ -66,7 +67,7 @@ def salvar_dados(nome_arquivo,lista_resultado,numero_testes):
         
         #Cabeçalho
         arquivo.write(" ")
-        for i in range(numero_testes):
+        for i in range(len(lista_resultado)):
             arquivo.write("Teste" + str(i+1) + " ")        
         arquivo.write("Media"+ " ")
         arquivo.write("Melhor" + " ")
@@ -75,7 +76,7 @@ def salvar_dados(nome_arquivo,lista_resultado,numero_testes):
         arquivo.write('\n')
 
         #Conteudo
-        for i in range(numero_testes):
+        for i in range(len(lista_resultado)):
             data = []
             arquivo.write("gBest" + str(i + 1) + " ")
             for lista in lista_resultado:
@@ -254,7 +255,7 @@ def main():
         lista_resultado.append(lista_iteracao)
 
     nome_arquivo = "teste"
-    salvar_dados(nome_arquivo,lista_resultado,numero_testes)
+    salvar_dados(nome_arquivo,lista_resultado)
     
     #Implementar plotagem
     # plotar_dados()
