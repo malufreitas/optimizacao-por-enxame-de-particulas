@@ -30,7 +30,9 @@ Continuando...
 
 - Faça um clone do projeto ou faça o download dos arquivos
 - Por meio da linha de comando caminhe até o diretório onde se encontram os arquivos-fonte
-- ...
+- Execute o comando *python main.py*
+
+O comando acima gera os arquivos com o numero de testes especificados e quantidade de iterações e recalculo das posicoes
 
 ## Implementação
 
@@ -40,18 +42,18 @@ A estrutura da implementação tomou como base não somente o pseudocódigo pass
 2- Inicialização dos elementos iniciais dentro do domínio especificado
 3- Atribuição de velocidade normalizada a todas as partículas
 4- Loop iterativo nas partículas processando-as da seguinte forma:
-    - Calculo da Função Fitness para posição corrente e, definição da melhor posição da partícula
+>- Calculo da Função Fitness para posição corrente e, definição da melhor posição da partícula
+
 5- Identificação da melhor partícula global (gBest)
 6- Loop iterativo nas partículas processando-as da seguinte forma:
-    - Calculo da nova velocidade, com base na equação. (Para cada dimensão da partícula)
-    - Atualização da posição em função do cálculo da velocidade e posição anterior
+>- Calculo da nova velocidade, com base na equação. (Para cada dimensão da partícula)
+>- Atualização da posição em função do cálculo da velocidade e posição anterior
+
 7- Realizar as operações enquanto não chegar na condição de parada
 
 ### Trechos mais importantes da implementação segundo o Pseudocódigo
 
 **Inicialização das Partículas**
-
-**Velocidade Iniciais**
 
 **Cálculo do Fitness e Checagem de pBest**
 
