@@ -38,14 +38,14 @@ O comando acima gera os arquivos com o numero de testes especificados e quantida
 
 A estrutura da implementação tomou como base não somente o pseudocódigo passado pelo professor, mas também por meio de inferências e deduções com base em materias pesquisados. Para fins de transparência, segue o modelo de pseudocódigo que foi usado como suporte:
 
-1- Determinação do número de partículas
-2- Inicialização dos elementos iniciais dentro do domínio especificado
-3- Atribuição de velocidade normalizada a todas as partículas
-4- Loop iterativo nas partículas processando-as da seguinte forma:
+1- Determinação do número de partículas <br>
+2- Inicialização dos elementos iniciais dentro do domínio especificado <br>
+3- Atribuição de velocidade normalizada a todas as partículas <br>
+4- Loop iterativo nas partículas processando-as da seguinte forma: <br>
 >- Calculo da Função Fitness para posição corrente e, definição da melhor posição da partícula
 
-5- Identificação da melhor partícula global (gBest)
-6- Loop iterativo nas partículas processando-as da seguinte forma:
+5- Identificação da melhor partícula global (gBest) <br>
+6- Loop iterativo nas partículas processando-as da seguinte forma: <br>
 >- Calculo da nova velocidade, com base na equação. (Para cada dimensão da partícula)
 >- Atualização da posição em função do cálculo da velocidade e posição anterior
 
