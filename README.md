@@ -87,12 +87,12 @@ A estrutura da implementação tomou como base não somente o pseudocódigo pass
 
 As tabelas a seguir mostra os resultados de gBest em cada iteração, exibidos em uma pilha de 10 testes para os casos de:
 
-- [20 Iterações e 50 Indivíduos]()
-- [20 Iterações e 100 Indivíduos]()
-- [50 Iterações e 50 Indivíduos]()
-- [50 Iterações e 100 Indivíduos]()
-- [100 Iterações e 50 Indivíduos]()
-- [100 Iterações e 100 Indivíduos]()
+- [20 Iterações e 50 Indivíduos](https://github.com/malufreitas/optimizacao-por-enxame-de-particulas/blob/master/images/Processamento_20Intera%C3%A7%C3%B5es_50Particulas_10Testes.PNG)
+- [20 Iterações e 100 Indivíduos](https://github.com/malufreitas/optimizacao-por-enxame-de-particulas/blob/master/images/Processamento_20Intera%C3%A7%C3%B5es_100Particulas_10Testes.PNG)
+- [50 Iterações e 50 Indivíduos](https://github.com/malufreitas/optimizacao-por-enxame-de-particulas/blob/master/images/Processamento_50Intera%C3%A7%C3%B5es_50Particulas_10Testes.PNG)
+- [50 Iterações e 100 Indivíduos](https://github.com/malufreitas/optimizacao-por-enxame-de-particulas/blob/master/images/Processamento_50Intera%C3%A7%C3%B5es_100Particulas_10Testes.PNG)
+- [100 Iterações e 50 Indivíduos](https://github.com/malufreitas/optimizacao-por-enxame-de-particulas/blob/master/images/Processamento_100Intera%C3%A7%C3%B5es_50Particulas_10Testes.PNG)
+- [100 Iterações e 100 Indivíduos](https://github.com/malufreitas/optimizacao-por-enxame-de-particulas/blob/master/images/Processamento_100Intera%C3%A7%C3%B5es_100Particulas_10Testes.PNG)
 
 ### Referências
 
