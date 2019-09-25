@@ -1,4 +1,5 @@
 import statistics
+from Particula import Particula
 
 def salvar_dados(nome_arquivo,lista_resultado):    
     precisao_casas_decimais = 6
@@ -17,34 +18,48 @@ def salvar_dados(nome_arquivo,lista_resultado):
             arquivo.write("Teste" + str(i+1) + " ")        
         arquivo.write("Media"+ " ")
         arquivo.write("Melhor" + " ")
-        arquivo.write("Pior" + " ")
-        arquivo.write("DesvioPadrao")
+        # arquivo.write("Pior" + " ")
+        # arquivo.write("DesvioPadrao")
+        arquivo.write("xBest" + " ")
+        arquivo.write("yBest")
         arquivo.write('\n')
 
         #Conteudo
         for i in range(len(lista_resultado)):
             data = []
+            data_particula = []
             arquivo.write("gBest" + str(i + 1) + " ")
             for lista in lista_resultado:
                 particula_global = lista[i].get_valor_fitness()
                 particula_global = round(particula_global,precisao_casas_decimais)
                 data.append(particula_global)
+                data_particula.append(lista[i])
                 arquivo.write(str(particula_global).replace('.',',') + " ")
-                
+
+            lista = sorted(data_particula , key=Particula.get_valor_fitness)
+            
             #Media
             media = statistics.mean(data)
             arquivo.write(str(media).replace('.',',') + " ")
 
             #Melhor
-            menor = min(data)
+            menor = lista[0].get_valor_fitness()
             arquivo.write(str(menor).replace('.',',') + " ")
 
-            #Pior
-            maior = max(data)
-            arquivo.write(str(maior).replace('.',',') + " ")
+            #xBest
+            xBest = lista[0].x_best
+            arquivo.write(str(xBest).replace('.',',') + " ")
 
-            #Desvio padrão   
-            desvio = statistics.pstdev(data)
-            arquivo.write(str(desvio).replace('.',','))
+            #yBest
+            yBest = lista[0].y_best
+            arquivo.write(str(yBest).replace('.',','))
+
+            # #Pior
+            # maior = lista[-1].get_valor_fitness()
+            # arquivo.write(str(maior).replace('.',',') + " ")
+
+            # #Desvio padrão   
+            # desvio = statistics.pstdev(data)
+            # arquivo.write(str(desvio).replace('.',','))
 
             arquivo.write('\n')
