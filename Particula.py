@@ -16,7 +16,7 @@ class Particula:
     
     
     def calcula_aptidao(self):
-        return (-(self.y_atual + 47) * math.sin(abs(((self.x_atual/2) + (self.y_atual + 47)) ** (1/2)))) - (self.x_atual * math.sin(abs((self.x_atual - (self.y_atual - 47)) ** (1/2))))
+        return -(self.y_atual + 47) * math.sin(  abs(((self.x_atual/2) + (self.y_atual + 47))) ** (1/2) ) -self.x_atual * math.sin(  ( abs(self.x_atual - (self.y_atual + 47)) ** (1/2) )   )
 
     def set_x_y_best(self, x_best, y_best):
         self.x_best = x_best
