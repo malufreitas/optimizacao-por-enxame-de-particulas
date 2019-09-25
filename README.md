@@ -55,24 +55,44 @@ A estrutura da implementação tomou como base não somente o pseudocódigo pass
 
 **Inicialização das Partículas**
 
+<p align="center">
+  <img  src="https://github.com/malufreitas/optimizacao-por-enxame-de-particulas/blob/master/images/gera_populacao_inicial.png">
+</p>
+
 **Cálculo do Fitness e Checagem de pBest**
+
+<p align="center">
+  <img  src="https://github.com/malufreitas/optimizacao-por-enxame-de-particulas/blob/master/images/calculo_checagem_fitness.png">
+</p>
 
 **Identificação do gBest**
 
+<p align="center">
+  <img  src="https://github.com/malufreitas/optimizacao-por-enxame-de-particulas/blob/master/images/identifica_gbest.png">
+</p>
+
 **Atualização das Velocidades x e y**
 
+<p align="center">
+  <img  src="https://github.com/malufreitas/optimizacao-por-enxame-de-particulas/blob/master/images/calculo_validacao_velocidade.png">
+</p>
+
 **Atualização das Posições x e y**
+
+<p align="center">
+  <img  src="https://github.com/malufreitas/optimizacao-por-enxame-de-particulas/blob/master/images/calculo_checagem_posicao.png">
+</p>
 
 ## Resultados
 
 As tabelas a seguir mostra os resultados de gBest em cada iteração, exibidos em uma pilha de 10 testes para os casos de:
 
-- 20 Iterações e 50 Indivíduos
-- 20 Iterações e 100 Indivíduos
-- 50 Iterações e 50 Indivíduos
-- 50 Iterações e 100 Indivíduos
-- 100 Iterações e 50 Indivíduos
-- 100 Iterações e 100 Indivíduos
+- [20 Iterações e 50 Indivíduos]()
+- [20 Iterações e 100 Indivíduos]()
+- [50 Iterações e 50 Indivíduos]()
+- [50 Iterações e 100 Indivíduos]()
+- [100 Iterações e 50 Indivíduos]()
+- [100 Iterações e 100 Indivíduos]()
 
 ### Referências
 

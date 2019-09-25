@@ -1,18 +1,4 @@
-import matplotlib.pyplot
 import statistics
-
-def plotar_dados():
-    #matplotlib.pyplot.plot(x, y)
-    #matplotlib.pyplot.show()
-
-    # for i in range(numero_testes):
-    #         for lista in lista_resultado:
-    #         #print(str(lista[iteracoes]))
-    #         print(lista[iteracoes][0])
-    #         arquivo.write(str(lista[iteracoes][0]).replace('.',',') + " ")
-    #         arquivo.write(str(lista[iteracoes][1]).replace('.',',') + " ")
-    #     arquivo.write('\n')
-    pass
 
 def salvar_dados(nome_arquivo,lista_resultado):    
     precisao_casas_decimais = 6
