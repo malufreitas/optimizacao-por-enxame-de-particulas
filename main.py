@@ -10,10 +10,16 @@ def main():
     vetor_numero_interacoes = [20,50,100]
 
     # Determinando o número de partículas P da população
-    vetor_numero_populacao = [20,50,100]
+    vetor_numero_populacao = [50,100]
+
+
+
+
+
+
 
     # Constants de Phi (ϕ), para uso na equacao da velocidade
-    const = 2.05
+    const = 2.09
     
     for numero_interacoes in vetor_numero_interacoes:
         for numero_populacao in vetor_numero_populacao:
