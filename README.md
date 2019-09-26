@@ -22,7 +22,7 @@ O algoritmo resolve um problema criando uma população de partículas, como sol
 O problema sugerido pelo professor envolve utilizar algum algoritmo de otimização por enxame de partículas para minimar a função *Eggholder*, que é uma função clássica na condução de testes para otimização de funções. O objetivo final então, é se aproximar o máximo possível do mínimo global desta função, que é exibida abaixo:
 
 <p align="center">
-  <img  src="">
+  <img  src="https://github.com/malufreitas/optimizacao-por-enxame-de-particulas/blob/master/images/funcao_eggholder.png?raw=true">
 </p>
 
 ## Instalação e Execução
