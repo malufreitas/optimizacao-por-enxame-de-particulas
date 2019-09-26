@@ -6,20 +6,24 @@ Alunos: [Maria Luiza](https://github.com/malufreitas) e [Tarcísio Bruni](https:
 
 ## Explicação Teórica
 
-O algoritmo de Otimização por Enxame de Partículas (*Particle Swarm Optimization*) ou PSO , é um algoritmo dentro do ramo da Inteligência Artificial e Computação Evolutiva e foi concebido por James Kennedy e Russel Eberhart. O objetivo deste algoritmo está em otimizar um problema de maneira interativa, baseado em aspectos semelhantes aos da iteração de cardumes de peixes ou revoadas de pássaros.
+O algoritmo de Otimização por Enxame de Partículas (*Particle Swarm Optimization*) ou PSO , é um algoritmo dentro do ramo da Inteligência Artificial e Computação Evolutiva e foi concebido por James Kennedy e Russel Eberhart. O objetivo deste algoritmo está em otimizar um problema de maneira iterativa, baseado em aspectos semelhantes aos da iteração de cardumes e revoadas.
 
-Ele está entre as meta-heurísticas de algoritmos de otimização baseados em padrões da natureza mais populares e é inspirado no comportamento social e cooperativo exibido por várias espécies de forma a realizar as necessidades no espaço de busca. Por se tratar de uma meta-heurística, reliza pouca ou quase nenhuma premissa sobre algum problema que é proposto e com isso pode procurar soluções em grande espaço de busca. Por sua vez há de se observar que:
+Ele está entre as meta-heurísticas de algoritmos de otimização baseados em padrões da natureza mais populares e é inspirado no comportamento social e cooperativo exibido por várias espécies de forma a realizar as necessidades no espaço de busca. Por se tratar de uma meta-heurística, realiza pouca ou quase nenhuma premissa sobre algum problema que é proposto e com isso pode procurar soluções em grande espaço de busca. Por sua vez há de se observar que:
 
 - Não garante que uma solução ideal seja achada e,
-- Guia-se por experiência pessoal (pBest), experiência global (gBest), e o movimento atual das particulas  para decidir o próximo espaço a ser analisado.
+- Guia-se por experiência pessoal (pBest), experiência global (gBest), e o movimento atual das particulas para decidir o próximo espaço a ser analisado.
 
 O algoritmo PSO está dentro das soluções da computação inspiradas nos fenômenos da natureza, como por exemplo a Computação Evolucionária e Inteligência Coletiva – dentre os estudos dessas áreas também estão Algoritmos Genéticos, Programação Coletiva, Evolução Gramatical e Programação Evolutiva.
 
-O algoritmo resolve um problema criando uma população de soluções candidatas, também conhecidas como partículas. Essas partículas são movidas em torno do espaço de pesquisa. Tais movimentos são realizados de acordo com fórmulas matemáticas (equação da velocidade) sobre a posição e velocidade correntes de cada membro (ou partícula) do bando.
+O algoritmo resolve um problema criando uma população de partículas, como soluções candidatas. Essas partículas são movidas em torno do espaço de pesquisa e tais movimentos são realizados de acordo com fórmulas matemáticas (equação da velocidade) sobre a posição e velocidade correntes de cada membro do bando.
 
 ## Problema Proposto
 
-O problema sugerido pelo professor envolve utilizar algum algoritmo de otimização por enxame de partículas para minimar a função *Eggholder*, que é uma função clássica na condução de testes para otimização de funções.
+O problema sugerido pelo professor envolve utilizar algum algoritmo de otimização por enxame de partículas para minimar a função *Eggholder*, que é uma função clássica na condução de testes para otimização de funções. O objetivo final então, é se aproximar o máximo possível do mínimo global desta função, que é exibida abaixo:
+
+<p align="center">
+  <img  src="">
+</p>
 
 ## Instalação e Execução
 
@@ -32,11 +36,11 @@ Continuando...
 - Por meio da linha de comando caminhe até o diretório onde se encontram os arquivos-fonte
 - Execute o comando *python main.py*
 
-O comando acima gera os arquivos com o numero de testes especificados e quantidade de iterações e recalculo das posicoes
+O comando acima **gera** os arquivos com resultados separados pelos processamentos de número de testes , quantidade de iterações e número da população.
 
 ## Implementação
 
-A estrutura da implementação tomou como base não somente o pseudocódigo passado pelo professor, mas também por meio de inferências e deduções com base em materias pesquisados. Para fins de transparência, segue o modelo de pseudocódigo que foi usado como suporte:
+A estrutura da implementação tomou como base não somente o pseudocódigo passado pelo professor, mas também por meio de inferências/deduções com base nos materias pesquisados (referências ao final do documento). Para fins de transparência, segue o modelo de pseudocódigo que foi usado como suporte:
 
 1- Determinação do número de partículas <br>
 2- Inicialização dos elementos iniciais dentro do domínio especificado <br>
@@ -50,6 +54,20 @@ A estrutura da implementação tomou como base não somente o pseudocódigo pass
 >- Atualização da posição em função do cálculo da velocidade e posição anterior
 
 7- Realizar as operações enquanto não chegar na condição de parada
+
+#### Descrição dos Arquivos:
+- *main.py* - Arquivo de chamada principal onde são especificados a quantidade de testes para rodar, a quantidade de iterações do PSO e quantidade de populações.
+- *pso.py* - Arquivo com a implementação do algoritmo junto com funções de validação, que são listadas no escopo do problema.
+- *Particula.py* - Arquivo com a Classe que representa uma entidade Particula.
+> Contém os atributos de:
+> - Posição x atual,
+> - Posição y atual,
+> - Velocidade x atual,
+> - Velocidade y atual,
+> - Valor do Melhor Fitness para a própria particula,
+> - Posição x e y do melhor Fitness
+
+- *persistencia.py* - Arquivo com funçoes para exportação dos resultados.
 
 ### Trechos mais importantes da implementação segundo o Pseudocódigo
 
@@ -85,7 +103,7 @@ A estrutura da implementação tomou como base não somente o pseudocódigo pass
 
 ## Resultados
 
-As tabelas a seguir mostra os resultados de gBest em cada iteração, exibidos em uma pilha de 10 testes para os casos de:
+As tabelas a seguir mostram os resultados gráficos (média e melhor) de gBest em cada iteração, processados em uma pilha de 10 testes para os casos de:
 
 - [20 Iterações e 50 Indivíduos](https://github.com/malufreitas/optimizacao-por-enxame-de-particulas/blob/master/images/Processamento_20Intera%C3%A7%C3%B5es_50Particulas_10Testes.PNG)
 - [20 Iterações e 100 Indivíduos](https://github.com/malufreitas/optimizacao-por-enxame-de-particulas/blob/master/images/Processamento_20Intera%C3%A7%C3%B5es_100Particulas_10Testes.PNG)
